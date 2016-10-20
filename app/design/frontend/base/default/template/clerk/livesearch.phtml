@@ -1,0 +1,55 @@
+<?php if (Mage::helper('clerk')->checkDebugMode()) { ?>
+<script type="text/javascript">
+function processClerkSearchInputs()
+  {
+  function createClerkSearchSpan(el, idx)
+    {
+    var clerk_span = document.createElement('span');
+    clerk_span.setAttribute('class', 'clerk');
+    clerk_span.setAttribute('data-template', "@<?php echo ltrim(Mage::helper('clerk')->getSetting('clerk/livesearch/template'),"@") ?>");
+    clerk_span.setAttribute('data-live-search-categories',"<?php echo Mage::helper('clerk')->getSetting('clerk/livesearch/show_categories') ?>");
+    clerk_span.setAttribute('data-live-search-categories-title', "<?php echo $this->__('Categories') ?>");
+    clerk_span.setAttribute('data-bind-live-search', '.clerk_search_input' + String(idx));
+    el.className += ' clerk_search_input' + String(idx);
+    el.parentNode.insertBefore(clerk_span, el.nextSibling);
+    }
+
+  var search_input = document.getElementById('search');
+  if (search_input)
+    {
+    var inputs_class = (search_input.className && search_input.className != '') ? search_input.className.split(' ') : '';
+
+    for(var i=0; i<inputs_class.length;i++)
+    if (inputs_class[i].indexOf('search') > -1)
+      {
+      inputs_class = inputs_class[i];
+      break;
+      }
+
+    var search_inputs = document.getElementsByClassName(inputs_class);
+
+    if (!search_inputs || search_inputs.length == 0)
+    createClerkSearchSpan(search_input, 0);
+    else
+    for(var i=0; i<search_inputs.length;i++)
+      {
+      if (search_inputs[i].getAttribute('id') != 'search')
+      continue;
+      createClerkSearchSpan(search_inputs[i], i);
+      }
+    }
+  }
+
+if (document.addEventListener)
+  {
+  if (document.body === "undefined" || document.body == null)
+  document.addEventListener("DOMContentLoaded",
+  function(event)
+    {
+    processClerkSearchInputs();
+    });
+  else
+  processClerkSearchInputs();
+  }
+</script>
+<?php } ?>

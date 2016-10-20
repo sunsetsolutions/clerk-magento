@@ -1,0 +1,60 @@
+<?php if (Mage::helper('clerk')->checkDebugMode()) { ?>
+</a>
+<span id="clerk-power-popup">
+    <div class="clerk-top-wrapper" style="display:<?php echo (($this->product->getName() != "") ? "block;" : "block;"); ?>">
+        <div class="col12">
+            <div class="col12">
+                <ul class="messages"><li class="success-msg"><ul><li><span><?php echo $this->__('%s was successfully added to your shopping cart.', $this->product->getName()); ?></span></li></ul></li></ul>
+            </div>
+
+            <?php /* <div class="col12" style="margin:15px 0px;">
+                <div class="col10" align="center">
+                  <div class="col4 left clerk-product-image">
+                    <img src="<?php echo $this->helper('catalog/image')->init($this->product, 'image')->resize(100); ?>"
+                         alt="<?php echo $this->stripTags($this->getImageLabel($this->product, 'small_image'), null, true) ?>" />
+                  </div>
+                  <div class="col6 left">
+                    <span class="clerk-name"><?php echo $this->product->getName() ?></span>
+                    <?php echo $this->getLayout()->createBlock('catalog/product_price')->getPriceHtml($this->product); ?>
+                  </div>
+                </div>
+            </div>
+            <div class="clerk-clearer"></div> */ ?>
+        </div>
+
+        <div class="col12 left" style="background-color:#fafafa;">
+            <div class="col12">
+                <table class="table">
+                    <tr>
+                    <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="clerk-text padding10-top" colspan="2">
+                          <span style="font-size:14px;font-weight:600px;"><?php echo $this->__('You have %s products in your shopping cart', count($this->quote->getAllVisibleItems())); ?></span>
+                       </td>
+                    </tr>
+                    <tr class="clerk-total">
+                        <td class="clerk-text" colspan="2"><?php echo Mage::helper('clerk')->__('Total'); echo "&nbsp;".Mage::helper('core')->currency($this->quote->getGrandTotal(), true, false); ?></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cart col12">
+              <div class="cart-collaterals" style="margin-bottom:0px;padding:20px 20px;">
+                <a href="#" class="btn-acc btn-continue" onclick="setLocation('<?php echo Mage::getBaseUrl(); ?>')">Continuar comprando</a>
+                <ul class="checkout-types">
+                  <li>
+                    <button type="button" title="Finalizar compra" class="button btn-proceed-checkout btn-checkout" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>')"><span><span>Finalizar compra</span></span></button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+</span>
+<div style="clear:both"></div>
+    <br/>
+    <br/>
+    <?php foreach ($this->templates as $template) : ?>
+    <span class="clerk" data-template="@<?php echo $template ?>" data-products="[<?php echo $this->product->getId(); ?>]" data-after-render="clerk_createSlider"></span>
+    <?php endforeach; ?>
+<?php } ?>
