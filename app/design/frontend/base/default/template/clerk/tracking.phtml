@@ -1,5 +1,9 @@
 <?php
     $publicapikey = Mage::helper('clerk')->getSetting('clerk/general/publicapikey');
+    $singleton_publicapikey = Mage::getSingleton('core/session')->getClerkPublicAPIKey();
+    if (!empty($publicapikey) && empty($singleton_publicapikey))
+    Mage::getSingleton('core/session')->setClerkPublicAPIKey($publicapikey);
+    $publicapikey = (empty($publicapikey)) ? $singleton_publicapikey : $publicapikey;
     $formkey = Mage::getSingleton('core/session')->getFormKey();
 ?>
 
