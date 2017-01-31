@@ -79,6 +79,17 @@
               <show_in_store>1</show_in_store>
               <comment>Use this url to configure an importer from my.clerk.io</comment>
             </url>
+            <auto_sync>
+              <label>Auto Sync</label>
+              <depends>
+                <active>1</active>
+              </depends>
+              <comment>Enable/Disable Clerk auto sync when the product catalog changes</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>41</sort_order>
+              <show_in_store>1</show_in_store>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+            </auto_sync>
             <version>
               <label>Extension version</label>
               <frontend_type>select</frontend_type>

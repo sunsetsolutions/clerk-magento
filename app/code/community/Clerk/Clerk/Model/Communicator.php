@@ -21,7 +21,8 @@ class Clerk_Clerk_Model_Communicator extends Mage_Core_Helper_Abstract
         $appEmulation = Mage::getSingleton('core/app_emulation');
         foreach ($product->getStoreIds() as $storeId) {
             $store_enabled = Mage::helper('clerk')->getSetting('clerk/general/active', $storeId);
-            if (!$store_enabled) {
+            $autosync_enabled = Mage::helper('clerk')->getSetting('clerk/general/auto_sync', $storeId);
+            if ((!$store_enabled) || (!$autosync_enabled)){
                 continue;
             }
             $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($storeId);

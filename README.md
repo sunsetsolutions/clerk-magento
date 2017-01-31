@@ -12,7 +12,7 @@ recommendations.
 See features and benefits of [clerk.io for
 Magento](https://docs.clerk.io/docs/magento).
 
-![Latest version](https://img.shields.io/badge/latest-2.0.5-green.svg)
+![Latest version](https://img.shields.io/badge/latest-2.0.6-green.svg)
 ![Magento 1.9.x.x](https://img.shields.io/badge/magento-1.9-blue.svg)
 ![PHP >= 5.3](https://img.shields.io/badge/php-%3E=5.3-green.svg)
 
